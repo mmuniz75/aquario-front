@@ -9,11 +9,14 @@
             <div>
                 <mat-label><h4>Você sabe quantos kilos de substrato tem no seu aquário ?</h4></mat-label>
                 <mat-form-field appearance="legacy">
-                    <mat-select>
+                    <mat-select *ngIf="false">
                         <mat-option value="true">Sim</mat-option>
                         <mat-option value="false">Não</mat-option>
                     </mat-select>
+                    <input matInput type="number" maxlength="3"
+                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                 </mat-form-field>
+
             </div>
             <div class="mt-5 mb-5">
                 <button class="btn btn-primary btn-lg me-4" type="button" (click)="openDimentions()">
@@ -21,7 +24,7 @@
                 </button>
                 
                 <button class="btn btn-primary btn-lg" type="button">
-                    Peixes
+                    Proximo
                 </button>
             </div>
         </div>
