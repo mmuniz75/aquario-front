@@ -9,7 +9,7 @@
             <div class="text-center">
                 <mat-label><h5>Escolha um peixe</h5></mat-label>
                 <mat-form-field appearance="legacy">
-                    <mat-select>
+                    <mat-select  (selectionChange)="openFishDialog()">
                         <mat-option value="true">Betta</mat-option>
                         <mat-option value="true">Colisa</mat-option>
                         <mat-option value="false">Tricotaster</mat-option>
@@ -63,15 +63,12 @@
                 <button class="btn btn-primary btn-lg me-4" type="button" (click)="openHardscape()">
                     Voltar
                 </button>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Launch demo modal
-                </button>
             </div>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="fishDialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
