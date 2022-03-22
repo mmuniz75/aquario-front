@@ -10,13 +10,15 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import { DimentionsComponent } from './dimentions/dimentions.component';
 import { HardscapeComponent } from './hardscape/hardscape.component';
+import { AquariumComponent } from './aquarium/aquarium.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DimentionsComponent,
-    HardscapeComponent
+    HardscapeComponent,
+    AquariumComponent
   ],
   imports: [
     BrowserModule,

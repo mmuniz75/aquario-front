@@ -13,7 +13,11 @@ export class HardscapeComponent implements OnInit {
   }
 
   openDimentions() {
-        this.router.navigate(['/dimentions']);
+    this.router.navigate(['/dimentions']);
+  }
+
+  openAquarion(){
+    this.router.navigate(['/aquarium']);
   }
 
 }
