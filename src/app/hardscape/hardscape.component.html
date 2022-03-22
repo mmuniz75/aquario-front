@@ -1,0 +1,29 @@
+<div class="row justify-content-center">
+    <div class="mt-4 col-lg-6" style="background-color:#ffffff">
+
+        <div class="mt-4 my-2 text-center text-primary">
+            <h3>HardScape</h3>
+        </div>
+
+        <div class="mt-3 text-center">
+            <div>
+                <mat-label><h4>Você sabe quantos kilos de substrato tem no seu aquário ?</h4></mat-label>
+                <mat-form-field appearance="legacy">
+                    <mat-select>
+                        <mat-option value="true">Sim</mat-option>
+                        <mat-option value="false">Não</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="mt-5 mb-5">
+                <button class="btn btn-primary btn-lg me-4" type="button" (click)="openDimentions()">
+                    Voltar
+                </button>
+                
+                <button class="btn btn-primary btn-lg" type="button">
+                    Peixes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

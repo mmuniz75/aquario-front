@@ -6,12 +6,16 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { DimentionsComponent } from './dimentions/dimentions/dimentions.component';
+import { MatSelectModule } from '@angular/material/select';
+import { DimentionsComponent } from './dimentions/dimentions.component';
+import { HardscapeComponent } from './hardscape/hardscape.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    DimentionsComponent
+    DimentionsComponent,
+    HardscapeComponent
   ],
   imports: [
     BrowserModule,
@@ -19,6 +23,7 @@ import { DimentionsComponent } from './dimentions/dimentions/dimentions.componen
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

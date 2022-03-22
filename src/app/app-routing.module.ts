@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DimentionsComponent } from './dimentions/dimentions/dimentions.component';
+import { DimentionsComponent } from './dimentions/dimentions.component';
+import { HardscapeComponent } from './hardscape/hardscape.component';
 
 const routes: Routes = [
 
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path : "dimentions",
     component : DimentionsComponent
+  },
+  {
+    path : "hardscape",
+    component : HardscapeComponent
   },
 
 ];
