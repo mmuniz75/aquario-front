@@ -1,13 +1,12 @@
 
 
 export class Tank {
-    width!: number;
-    length!: number;
-    height!: number;
 
+    constructor(public width: number = 0,
+                public length: number = 0 ,
+                public height: number = 0){
 
-    isFilled(){
-        return this.width > 0 && this.length > 0 && this.height > 0
     }
+
 
 }

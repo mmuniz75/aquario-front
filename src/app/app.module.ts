@@ -12,6 +12,7 @@ import { DimentionsComponent } from './screens/dimentions/dimentions.component';
 import { HardscapeComponent } from './screens/hardscape/hardscape.component';
 import { AquariumComponent } from './screens/aquarium/aquarium.component';
 import { FormsModule } from '@angular/forms';
+import { InputNumberComponent } from './components/input-number/input-number.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     DimentionsComponent,
     HardscapeComponent,
-    AquariumComponent
+    AquariumComponent,
+    InputNumberComponent
   ],
   imports: [
     BrowserModule,

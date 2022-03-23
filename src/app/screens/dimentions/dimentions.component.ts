@@ -9,18 +9,28 @@ import { Tank } from 'src/app/model/tank.model';
 })
 export class DimentionsComponent implements OnInit {
 
-  tank = new Tank()
-
+  height = ''
+  length = ''
+  width = ''
+  
   constructor(private router: Router,
               private service: FishService) { }
   
   ngOnInit(): void {
-    this.tank = this.service.tank
+    var tank = this.service.tank
+    this.height = tank.height==0?'':tank.height.toString()
+    this.length = tank.length==0?'':tank.length.toString()
+    this.width = tank.width==0?'':tank.width.toString()
   }
 
   openHardscape() {
-    this.service.tank = this.tank
+    var tank = new Tank(+this.width,+this.length,+this.height)
+    this.service.tank = tank
     this.router.navigate(['/hardscape']);
+  }
+
+  isFilled(){
+    return this.width != '' && this.length != '' && this.height != ''
   }
 
 }

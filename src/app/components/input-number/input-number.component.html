@@ -1,0 +1,6 @@
+<mat-form-field appearance="legacy">
+    <mat-label>{{label}}</mat-label>
+    <input matInput type="tel" maxlength="3" [(ngModel)]="value"
+        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+</mat-form-field>
+
