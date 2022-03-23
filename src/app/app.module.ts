@@ -8,9 +8,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
-import { DimentionsComponent } from './dimentions/dimentions.component';
-import { HardscapeComponent } from './hardscape/hardscape.component';
-import { AquariumComponent } from './aquarium/aquarium.component';
+import { DimentionsComponent } from './screens/dimentions/dimentions.component';
+import { HardscapeComponent } from './screens/hardscape/hardscape.component';
+import { AquariumComponent } from './screens/aquarium/aquarium.component';
 
 
 @NgModule({
