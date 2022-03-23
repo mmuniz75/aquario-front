@@ -8,25 +8,25 @@
             <div>
                 <mat-form-field appearance="legacy">
                     <mat-label>Comprimento</mat-label>
-                    <input matInput type="number" maxlength="3"
+                    <input matInput type="tel" maxlength="3" [(ngModel)]="tank.width"
                         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                 </mat-form-field>
             </div>
             <div class="mt-2">
                 <mat-form-field appearance="legacy">
                     <mat-label>Largura</mat-label>
-                    <input matInput type="number" maxlength="3"
+                    <input matInput type="number" maxlength="3"  [(ngModel)]="tank.length"
                         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                 </mat-form-field>
             </div>
             <div class="mt-2">
                 <mat-form-field appearance="legacy">
                     <mat-label>Altura</mat-label>
-                    <input matInput type="number" maxlength="3"
+                    <input matInput type="number" maxlength="3"  [(ngModel)]="tank.height"
                         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                 </mat-form-field>
             </div>
-            <button class="btn btn-primary btn-lg btn-block mt-5 mb-5" (click)="openHardscape()">
+            <button *ngIf="tank.isFilled()" class="btn btn-primary btn-lg btn-block mt-5 mb-5" (click)="openHardscape()">
                 Hardscape
             </button>
         </div>

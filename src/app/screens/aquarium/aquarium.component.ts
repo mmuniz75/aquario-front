@@ -1,5 +1,7 @@
 import { Component, OnInit,ViewChildren, ElementRef, QueryList } from '@angular/core';
 import { Router } from '@angular/router';
+import { FishService } from 'src/app/fish.service';
+import { Tank } from 'src/app/model/tank.model';
 
 declare var window: any;
 
@@ -10,8 +12,10 @@ declare var window: any;
 export class AquariumComponent implements OnInit {
 
   fishDialog: any;
+  
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private service: FishService) { }
 
   ngOnInit(): void {
     this.fishDialog = new window.bootstrap.Modal(

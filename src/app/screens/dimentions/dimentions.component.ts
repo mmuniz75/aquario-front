@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FishService } from 'src/app/fish.service';
+import { Tank } from 'src/app/model/tank.model';
 
 @Component({
   selector: 'app-dimentions',
@@ -7,12 +9,17 @@ import { Router } from '@angular/router';
 })
 export class DimentionsComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  tank = new Tank()
+
+  constructor(private router: Router,
+              private service: FishService) { }
   
   ngOnInit(): void {
+    this.tank = this.service.tank
   }
 
   openHardscape() {
+    this.service.tank = this.tank
     this.router.navigate(['/hardscape']);
   }
 

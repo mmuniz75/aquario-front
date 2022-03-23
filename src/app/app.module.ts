@@ -11,6 +11,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { DimentionsComponent } from './screens/dimentions/dimentions.component';
 import { HardscapeComponent } from './screens/hardscape/hardscape.component';
 import { AquariumComponent } from './screens/aquarium/aquarium.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { AquariumComponent } from './screens/aquarium/aquarium.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
