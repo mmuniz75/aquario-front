@@ -55,6 +55,7 @@ export class HardscapeComponent implements OnInit {
   }
 
   openAquarion(){
+    this.service.resetQuestions()    
     this.router.navigate(['/aquarium']);
   }
 

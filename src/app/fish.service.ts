@@ -31,4 +31,9 @@ export class FishService {
     return this.http.post<HardscapeResponse[]>(`${environment.SERVER_URL}/hardscapeQuestion`,request)
 
   }
+
+  resetQuestions(){
+    this.previousAnswers = []
+    this.currentQuestion = null
+  }
 }  
