@@ -24,8 +24,12 @@ export class HardscapeComponent implements OnInit {
     this.service.getNextQuestion(this.getAnswer()).subscribe(
       {
         next: (questions) => {
-          this.question = questions[questions.length-1].hardScapeQuestion
-          this.service.currentQuestion = this.question.id
+          let lastQuestion = questions[questions.length-1] 
+          if(lastQuestion!=null) {
+            this.question = lastQuestion.hardScapeQuestion
+            this.service.currentQuestion = this.question.id
+          }else
+            this.openAquarion()  
         },
         error: (e) => console.error(e),
       }   
