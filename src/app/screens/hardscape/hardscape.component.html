@@ -7,13 +7,14 @@
 
         <div class="mt-3 text-center">
             <div>
-                <mat-label><h4>Você sabe quantos kilos de substrato tem no seu aquário ?</h4></mat-label>
+                <mat-label><h4>{{ question.displayText }}</h4></mat-label>
                 <mat-form-field appearance="legacy">
-                    <mat-select *ngIf="false">
+                    <mat-select *ngIf="question.isYesOrNoQuestion" [(ngModel)]="answer">
                         <mat-option value="true">Sim</mat-option>
                         <mat-option value="false">Não</mat-option>
                     </mat-select>
-                    <input type="number" class="ms-3 form-control me-5" maxlength="3" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                    <input *ngIf="!question.isYesOrNoQuestion"
+                           type="number" [(ngModel)]="answer" class="ms-3 form-control me-5" maxlength="3" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                 </mat-form-field>
 
             </div>
@@ -21,8 +22,7 @@
                 <button class="btn btn-primary btn-lg" type="button" (click)="openDimentions()">
                     Voltar
                 </button>
-                
-                <button class="btn btn-primary btn-lg ms-4" type="button">
+                <button class="btn btn-primary btn-lg ms-4" type="button" (click)="nextQuestion()">
                     Proximo
                 </button>
                 <button class="btn btn-primary btn-lg ms-4" type="button" (click)="openAquarion()">

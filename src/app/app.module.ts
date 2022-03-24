@@ -13,6 +13,7 @@ import { HardscapeComponent } from './screens/hardscape/hardscape.component';
 import { AquariumComponent } from './screens/aquarium/aquarium.component';
 import { FormsModule } from '@angular/forms';
 import { InputNumberComponent } from './components/input-number/input-number.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { InputNumberComponent } from './components/input-number/input-number.com
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
