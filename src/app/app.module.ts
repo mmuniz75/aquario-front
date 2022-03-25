@@ -14,6 +14,7 @@ import { AquariumComponent } from './screens/aquarium/aquarium.component';
 import { FormsModule } from '@angular/forms';
 import { InputNumberComponent } from './components/input-number/input-number.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SpinnerComponent } from './components/UI/spinner/spinner.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     DimentionsComponent,
     HardscapeComponent,
     AquariumComponent,
-    InputNumberComponent
+    InputNumberComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,7 @@ export class HardscapeComponent implements OnInit {
 
   question : HardScapeQuestion = new HardScapeQuestion('',false,'')
   answer : any = null
+  loading = false
   
 
   constructor(private router: Router,
@@ -21,20 +22,22 @@ export class HardscapeComponent implements OnInit {
   }
 
     nextQuestion(){
-    this.service.getNextQuestion(this.getAnswer()).subscribe(
-      {
-        next: (questions) => {
-          let lastQuestion = questions[questions.length-1] 
-          if(lastQuestion!=null) {
-            this.question = lastQuestion.hardScapeQuestion
-            this.service.currentQuestion = this.question.id
-            this.answer = null
-          }else
-            this.openAquarion()  
-        },
-        error: (e) => console.error(e),
-      }   
-    )  
+      this.loading = true
+      this.service.getNextQuestion(this.getAnswer()).subscribe(
+        {
+          next: (questions) => {
+            let lastQuestion = questions[questions.length-1] 
+            if(lastQuestion!=null) {
+              this.question = lastQuestion.hardScapeQuestion
+              this.service.currentQuestion = this.question.id
+              this.answer = null
+              this.loading = false
+            }else
+              this.openAquarion()  
+          },
+          error: (e) => console.error(e),
+        }   
+      )  
   }
 
   getAnswer(){

@@ -1,3 +1,4 @@
+<spinner *ngIf="loading"></spinner>
 <div class="row justify-content-center">
     <div class="mt-4 col-lg-6" style="background-color:#ffffff">
 
@@ -27,7 +28,7 @@
                         maxlength="3"
                         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                         <button *ngIf="answer !=null" class="btn btn-primary btn-sm" type="button" (click)="nextQuestion()">
-                            Proximo
+                            Próximo
                         </button>
                     </div>
                 </div>
