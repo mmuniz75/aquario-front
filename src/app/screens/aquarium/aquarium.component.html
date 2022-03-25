@@ -69,7 +69,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="fishDialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="fishDialog" tabindex="0" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -92,8 +92,9 @@
                         <li class="list-group-item">
                           <div class="input-group">
                             <span ><b>Quantidade desejada : </b></span>
-                            <input [value]="fish.minNumber" type="tel" class="ms-3 form-control me-5" maxlength="3" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
-                            <button class="btn btn-primary" data-bs-dismiss="modal">Adicionar</button>
+                            <input [(ngModel)]="fishAmount" type="tel" class="ms-3 form-control me-5" maxlength="3" 
+                              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                            <button class="btn btn-primary" (click)="addFish()">Adicionar</button>
                           </div>
                         </li>
                     </ul>

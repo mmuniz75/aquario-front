@@ -1,4 +1,5 @@
 import { Component, OnInit,ViewChildren, ElementRef, QueryList } from '@angular/core';
+import { ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { FishService } from 'src/app/fish.service';
 import { Fish } from 'src/app/model/fish.model';
@@ -18,6 +19,7 @@ export class AquariumComponent implements OnInit {
   @ViewChildren('tagMessage') tagMessage:any;
   fishs : Fish[] = []
   fish : Fish = new Fish()
+  fishAmount = 0
   
   constructor(private router: Router,
               private service: FishService) { }
@@ -44,7 +46,14 @@ export class AquariumComponent implements OnInit {
 
   openFishDialog(id : string){
     this.fish = this.fishs.find(fish => fish.id == +id)!
+    this.fishAmount = this.fish.minNumber
     this.fishDialog.show();
+  }
+
+  addFish() {
+    if (this.fishAmount < this.fish.minNumber)
+      this.ShowError("Quantidade mínima para essa espécie no aquário é " + this.fish.minNumber)
+
   }
 
   getAvaliableSpace(){
@@ -52,11 +61,15 @@ export class AquariumComponent implements OnInit {
   }
 
   handle(ex : any) {
-    this.loading = false;
     console.log(ex)
     let message = ex && ex.error && ex.error.message ? ex.error.message : "Erro interno";
-    this.message = message;
-    this.tagMessage.first.open();
-  }
+    this.ShowError(message)
+  }  
+
+    ShowError(message : string) {
+      this.loading = false;
+      this.message = message;
+      this.tagMessage.first.open();
+    }
 
 }
