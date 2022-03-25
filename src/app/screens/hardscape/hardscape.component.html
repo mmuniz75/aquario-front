@@ -1,7 +1,8 @@
 <spinner *ngIf="loading"></spinner>
+<message [isError]="isError" [text]="message" #tagMessage></message>
+
 <div class="row justify-content-center">
     <div class="mt-4 col-lg-6" style="background-color:#ffffff">
-
         <div class="mt-4 my-2 text-center text-primary">
             <h3>HardScape</h3>
         </div>
@@ -20,7 +21,7 @@
                 </mat-form-field>
             </div>
 
-            <div class="input-group mt-4" *ngIf="!question.isYesOrNoQuestion">
+            <div class="input-group mt-4" *ngIf="!question.isYesOrNoQuestion && question.displayText != ''">
                 <div class="col"></div>
                 <div class="col">
                     <div class="input-group">

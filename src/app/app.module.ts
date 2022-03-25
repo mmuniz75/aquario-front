@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { InputNumberComponent } from './components/input-number/input-number.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './components/UI/spinner/spinner.component';
+import { MessageComponent } from './components/UI/message/message.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { SpinnerComponent } from './components/UI/spinner/spinner.component';
     HardscapeComponent,
     AquariumComponent,
     InputNumberComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,

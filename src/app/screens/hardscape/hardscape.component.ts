@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { FishService } from 'src/app/fish.service';
 import { HardScapeQuestion } from 'src/app/model/hardscape-question.model';
@@ -12,8 +12,11 @@ export class HardscapeComponent implements OnInit {
   question : HardScapeQuestion = new HardScapeQuestion('',false,'')
   answer : any = null
   loading = false
-  
+  message = ''
+  isError = false
 
+  @ViewChildren('tagMessage') tagMessage:any;
+  
   constructor(private router: Router,
               private service: FishService) { }
 
@@ -35,7 +38,7 @@ export class HardscapeComponent implements OnInit {
             }else
               this.openAquarion()  
           },
-          error: (e) => console.error(e),
+          error: (e) => this.handle(e),
         }   
       )  
   }
@@ -52,8 +55,6 @@ export class HardscapeComponent implements OnInit {
 
   }
 
- 
-
   openDimentions() {
     this.router.navigate(['/dimentions']);
   }
@@ -61,6 +62,27 @@ export class HardscapeComponent implements OnInit {
   openAquarion(){
     this.service.resetQuestions()    
     this.router.navigate(['/aquarium']);
+  }
+
+  handle(ex : any) {
+    this.loading = false;
+    console.log(ex)
+    let message = ex && ex.error && ex.error.message ? ex.error.message : "Erro interno";
+    this.showError(message);
+  }
+
+  showError(message : string) {
+    this.showDialog(message,true);
+  }
+
+  showMessage(message : string) {
+    this.showDialog(message,false);
+  }
+
+  showDialog(message : string, type: boolean) {
+    this.message = message;
+    this.isError = type;
+    this.tagMessage.first.open();
   }
 
 }
