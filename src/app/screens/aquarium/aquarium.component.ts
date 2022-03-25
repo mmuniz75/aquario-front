@@ -20,6 +20,12 @@ export class AquariumComponent implements OnInit {
   fishs : Fish[] = []
   fish : Fish = new Fish()
   fishAmount = 0
+
+  phRange = ''
+  dhRange = ''
+  temperatureRange = ''
+
+  currentFishs : Fish[] = []
   
   constructor(private router: Router,
               private service: FishService) { }
@@ -29,7 +35,13 @@ export class AquariumComponent implements OnInit {
     this.fishDialog = new window.bootstrap.Modal(
       document.getElementById('fishDialog')
     );
-    this.service.listFishs().subscribe(
+    this.fetchFishs();
+  }
+
+  fetchFishs(){
+
+    let fishIds = this.currentFishs.map(fish => fish.id)
+    this.service.listFishs(fishIds).subscribe(
       {
         next: (fishs) => {
           this.fishs = fishs
@@ -38,6 +50,7 @@ export class AquariumComponent implements OnInit {
         error: (e) => this.handle(e)
       }   
     )  
+
   }
 
   openHardscape() {
@@ -53,6 +66,25 @@ export class AquariumComponent implements OnInit {
   addFish() {
     if (this.fishAmount < this.fish.minNumber)
       this.ShowError("Quantidade mínima para essa espécie no aquário é " + this.fish.minNumber)
+
+    this.loading = true
+        
+    this.service.addFish(this.fish.id, this.fishAmount,this.currentFishs.map( fish => fish.id) ).subscribe(
+      {
+        next: (response) => {
+          let addedFish = this.fishs.find(fish => fish.id == this.fish.id)
+          this.currentFishs.push(addedFish!)
+          this.dhRange = response.dhRange
+          this.phRange = response.phRAnge
+          this.temperatureRange = response.temperatureRange
+          this.service.centimeterAvaliable = response.spaceAvaliableInCentimer
+          this.fetchFishs()
+          this.fishDialog.close()
+        },
+        error: (e) => this.handle(e)
+      }   
+    )  
+
 
   }
 

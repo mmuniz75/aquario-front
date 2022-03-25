@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 
 import { environment } from 'src/environments/environment';
+import { AddFishRequest } from './model/add-fish-request.model';
+import { AddFishResponse } from './model/add-fish-response.model.';
 import { Answer } from './model/answer.model';
 import { AvaliableSpaceRequest } from './model/avaliable-space-request.model';
 import { AvaliableSpaceResponse } from './model/avaliable-space-response.model';
@@ -18,10 +20,10 @@ import { Tank } from './model/tank.model';
 })
 export class FishService {
 
-  tank : Tank = new Tank(80,30,45);
+  tank : Tank = new Tank(130,50,50);
   currentQuestion : string | null = null
   previousAnswers : Answer[] = []
-  centimeterAvaliable = 100
+  centimeterAvaliable = 200
 
   constructor(private http: HttpClient) { }
 
@@ -40,9 +42,14 @@ export class FishService {
     return this.http.post<AvaliableSpaceResponse>(`${environment.SERVER_URL}/avaliableSpace`,request)
   }
 
-  listFishs() : Observable<Fish[]> {
-    var request = new FishRequest(this.tank.width, this.tank.length, this.centimeterAvaliable, [])
+  listFishs(currentFishs : number[]) : Observable<Fish[]> {
+    var request = new FishRequest(this.tank.width, this.tank.length, this.centimeterAvaliable, currentFishs)
     return this.http.post<Fish[]>(`${environment.SERVER_URL}/fish`,request)
+  }
+
+  addFish(fishId : number, fishCount : number, currentFishs : number[]) : Observable<AddFishResponse> {
+    var request = new AddFishRequest(fishId, fishCount, this.centimeterAvaliable, currentFishs)
+    return this.http.put<AddFishResponse>(`${environment.SERVER_URL}/fish`,request)
   }
 
   resetQuestions(){

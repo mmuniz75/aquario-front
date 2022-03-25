@@ -23,16 +23,16 @@
                 </div>
                 <div class="text-right">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><b>Temperatura : </b>24Cº - 28Cº</li>
-                        <li class="list-group-item"><b>PH : </b>6.4 - 7.0</li>
-                        <li class="list-group-item"><b>Dureza :</b> 5-12</li>
+                        <li *ngIf="temperatureRange != ''" class="list-group-item"><b>Temperatura : </b>{{ temperatureRange }}</li>
+                        <li *ngIf="phRange != ''" class="list-group-item"><b>PH : </b>{{ phRange }}</li>
+                        <li *ngIf="dhRange != ''" class="list-group-item"><b>Dureza :</b> {{ dhRange }}</li>
                         <li class="list-group-item"><b>Espaço disponivel : </b> {{ getAvaliableSpace()}} cm</li>
                     </ul>
                 </div>
             </div>
 
             <div class="mt-4">
-                <table class="table table-primary table-striped">
+                <table class="table table-primary table-striped" *ngIf="currentFishs.length > 0">
                     <thead>
                       <tr>
                         <th scope="col">Peixe</th>
@@ -41,19 +41,9 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Coliza</td>
+                      <tr *ngFor="let fish of currentFishs">
+                        <td>{{ fish.name }}</td>
                         <td>1</td>
-                        <td><mat-icon aria-hidden="false" >delete</mat-icon></td>
-                      </tr>
-                      <tr>
-                        <td>Ramirezi</td>
-                        <td>1</td>
-                        <td><mat-icon aria-hidden="false" >delete</mat-icon></td>
-                      </tr>
-                      <tr>
-                        <td>Neon</td>
-                        <td>10</td>
                         <td><mat-icon aria-hidden="false" >delete</mat-icon></td>
                       </tr>
                     </tbody>
