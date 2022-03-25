@@ -1,6 +1,6 @@
 export class FishRequest{
-    constructor( tankWidth : number,
-                 tankLength : number,
-                 centimetersAvailable : number,
-                 currentFishIds : number[] ) {}
+    constructor( public tankWidth : number,
+                 public tankLength : number,
+                 public centimetersAvailable : number,
+                 public currentFishIds : number[] ) {}
 }

@@ -12,10 +12,8 @@
             <div class="text-center">
                 <mat-label><h5>Escolha um peixe</h5></mat-label>
                 <mat-form-field appearance="legacy">
-                    <mat-select  (selectionChange)="openFishDialog()">
-                        <mat-option value="true">Betta</mat-option>
-                        <mat-option value="true">Colisa</mat-option>
-                        <mat-option value="false">Tricotaster</mat-option>
+                    <mat-select  (selectionChange)="openFishDialog($event.value)" >
+                        <mat-option *ngFor="let fish of fishs" [value]="fish.id">{{fish.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
@@ -79,22 +77,22 @@
         </div>
         <div class="modal-body">
             <div class="row justify-content-center">
-                <img src="http://www.aquarismopaulista.com/wp-content/uploads/2016/01/Apistogramma-gossei.jpg" >
+                <img [src]="fish.imageUrl" >
             </div>
             <div class="mt-3">
               <div class="card text-white bg-primary mb-3 mt-3" >
                 <div class="card-header">
-                  Apistograma
+                  {{fish.name}}
                 </div>
                 <div class="text-right">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><b>Temperatura : </b>24Cº - 28Cº</li>
-                        <li class="list-group-item"><b>PH : </b>6.4 - 7.0</li>
-                        <li class="list-group-item"><b>Dureza :</b> 5-12</li>
+                        <li class="list-group-item"><b>Temperatura : </b>{{fish.temperatureRange}}</li>
+                        <li class="list-group-item"><b>PH : </b>{{fish.phRange}}</li>
+                        <li class="list-group-item"><b>Dureza :</b> {{fish.dhRange}}</li>
                         <li class="list-group-item">
                           <div class="input-group">
                             <span ><b>Quantidade desejada : </b></span>
-                            <input type="tel" class="ms-3 form-control me-5" maxlength="3" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                            <input [value]="fish.minNumber" type="tel" class="ms-3 form-control me-5" maxlength="3" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                             <button class="btn btn-primary" data-bs-dismiss="modal">Adicionar</button>
                           </div>
                         </li>

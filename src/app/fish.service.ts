@@ -7,7 +7,7 @@ import { Answer } from './model/answer.model';
 import { AvaliableSpaceRequest } from './model/avaliable-space-request.model';
 import { AvaliableSpaceResponse } from './model/avaliable-space-response.model';
 import { FishRequest } from './model/fish-request.model';
-import { FishResponse } from './model/fish-response.model';
+import { Fish } from './model/fish.model';
 import { HardScapeQuestion } from './model/hardscape-question.model';
 import { HardScapeRequest } from './model/hardscape-request.model';
 import { HardscapeResponse } from './model/hardscape-response.model';
@@ -40,9 +40,9 @@ export class FishService {
     return this.http.post<AvaliableSpaceResponse>(`${environment.SERVER_URL}/avaliableSpace`,request)
   }
 
-  listFishs() : Observable<FishResponse[]> {
+  listFishs() : Observable<Fish[]> {
     var request = new FishRequest(this.tank.width, this.tank.length, this.centimeterAvaliable, [])
-    return this.http.post<FishResponse[]>(`${environment.SERVER_URL}/fish`,request)
+    return this.http.post<Fish[]>(`${environment.SERVER_URL}/fish`,request)
   }
 
   resetQuestions(){
