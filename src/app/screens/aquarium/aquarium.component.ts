@@ -79,7 +79,7 @@ export class AquariumComponent implements OnInit {
           this.temperatureRange = response.temperatureRange
           this.service.centimeterAvaliable = response.spaceAvaliableInCentimer
           this.fetchFishs()
-          this.fishDialog.close()
+          this.fishDialog.hide()
         },
         error: (e) => this.handle(e)
       }   
