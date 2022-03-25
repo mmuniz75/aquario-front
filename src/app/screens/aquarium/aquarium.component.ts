@@ -31,4 +31,8 @@ export class AquariumComponent implements OnInit {
     this.fishDialog.show();
   }
 
+  getAvaliableSpace(){
+    return this.service.centimeterAvaliable
+  }
+
 }

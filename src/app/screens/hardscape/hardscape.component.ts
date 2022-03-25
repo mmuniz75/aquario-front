@@ -38,7 +38,7 @@ export class HardscapeComponent implements OnInit {
             }else
               this.openAquarion()  
           },
-          error: (e) => this.handle(e),
+          error: (e) => this.handle(e)
         }   
       )  
   }
@@ -50,7 +50,7 @@ export class HardscapeComponent implements OnInit {
       case 'false': 
         return false
       default:
-        return this.answer   
+        return +this.answer   
     }
 
   }
@@ -60,8 +60,18 @@ export class HardscapeComponent implements OnInit {
   }
 
   openAquarion(){
-    this.service.resetQuestions()    
-    this.router.navigate(['/aquarium']);
+    this.loading = true;
+    this.service.getAvaliableSpace().subscribe(
+      {
+        next: (response) => {
+          this.service.centimeterAvaliable = response.centimeterAvaliable
+          this.service.resetQuestions()    
+          this.router.navigate(['/aquarium']);
+        },
+        error: (e) => this.handle(e)
+      }
+    )
+    
   }
 
   handle(ex : any) {
