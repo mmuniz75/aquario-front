@@ -3,6 +3,7 @@ import { ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { FishService } from 'src/app/fish.service';
 import { Fish } from 'src/app/model/fish.model';
+import { School } from 'src/app/model/school.model';
 import { Tank } from 'src/app/model/tank.model';
 
 declare var window: any;
@@ -19,13 +20,13 @@ export class AquariumComponent implements OnInit {
   @ViewChildren('tagMessage') tagMessage:any;
   fishs : Fish[] = []
   fish : Fish = new Fish()
-  fishAmount = 0
+  fishCount = 0
 
   phRange = ''
   dhRange = ''
   temperatureRange = ''
 
-  currentFishs : Fish[] = []
+  schools : School[] = []
   
   constructor(private router: Router,
               private service: FishService) { }
@@ -39,8 +40,7 @@ export class AquariumComponent implements OnInit {
   }
 
   fetchFishs(){
-
-    let fishIds = this.currentFishs.map(fish => fish.id)
+    let fishIds = this.schools.map(school => school.fish.id)
     this.service.listFishs(fishIds).subscribe(
       {
         next: (fishs) => {
@@ -59,21 +59,21 @@ export class AquariumComponent implements OnInit {
 
   openFishDialog(id : string){
     this.fish = this.fishs.find(fish => fish.id == +id)!
-    this.fishAmount = this.fish.minNumber
+    this.fishCount = this.fish.minNumber
     this.fishDialog.show();
   }
 
   addFish() {
-    if (this.fishAmount < this.fish.minNumber)
+    if (this.fishCount < this.fish.minNumber)
       this.ShowError("Quantidade mínima para essa espécie no aquário é " + this.fish.minNumber)
 
     this.loading = true
         
-    this.service.addFish(this.fish.id, this.fishAmount,this.currentFishs.map( fish => fish.id) ).subscribe(
+    this.service.addFish(this.fish.id, this.fishCount,this.schools.map( school => school.fish.id) ).subscribe(
       {
         next: (response) => {
-          let addedFish = this.fishs.find(fish => fish.id == this.fish.id)
-          this.currentFishs.push(addedFish!)
+          let addedFish = new School(this.fishs.find(fish => fish.id == this.fish.id)!, this.fishCount)
+          this.schools.push(addedFish!)
           this.dhRange = response.dhRange
           this.phRange = response.phRAnge
           this.temperatureRange = response.temperatureRange

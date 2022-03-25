@@ -32,7 +32,7 @@
             </div>
 
             <div class="mt-4">
-                <table class="table table-primary table-striped" *ngIf="currentFishs.length > 0">
+                <table class="table table-primary table-striped" *ngIf="schools.length > 0">
                     <thead>
                       <tr>
                         <th scope="col">Peixe</th>
@@ -41,9 +41,9 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let fish of currentFishs">
-                        <td>{{ fish.name }}</td>
-                        <td>1</td>
+                      <tr *ngFor="let school of schools">
+                        <td>{{ school.fish.name }}</td>
+                        <td>{{ school.count }}</td>
                         <td><mat-icon aria-hidden="false" >delete</mat-icon></td>
                       </tr>
                     </tbody>
@@ -82,7 +82,7 @@
                         <li class="list-group-item">
                           <div class="input-group">
                             <span ><b>Quantidade desejada : </b></span>
-                            <input [(ngModel)]="fishAmount" type="tel" class="ms-3 form-control me-5" maxlength="3" 
+                            <input [(ngModel)]="fishCount" type="tel" class="ms-3 form-control me-5" maxlength="3" 
                               oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                             <button class="btn btn-primary" (click)="addFish()">Adicionar</button>
                           </div>
