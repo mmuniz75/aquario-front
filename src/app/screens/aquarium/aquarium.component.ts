@@ -3,6 +3,7 @@ import { ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { FishService } from 'src/app/fish.service';
 import { Fish } from 'src/app/model/fish.model';
+import { ParametersResponse } from 'src/app/model/parameters-response.model.';
 import { School } from 'src/app/model/school.model';
 import { Tank } from 'src/app/model/tank.model';
 
@@ -21,7 +22,8 @@ export class AquariumComponent implements OnInit {
   fishs : Fish[] = []
   fish : Fish = new Fish()
   fishCount = 0
-
+  
+  centimeterAvaliable = 0
   phRange = ''
   dhRange = ''
   temperatureRange = ''
@@ -36,12 +38,14 @@ export class AquariumComponent implements OnInit {
     this.fishDialog = new window.bootstrap.Modal(
       document.getElementById('fishDialog')
     );
+    this.centimeterAvaliable = this.service.centimeterAvaliable
     this.fetchFishs();
+    
   }
 
   fetchFishs(){
     let fishIds = this.schools.map(school => school.fish.id)
-    this.service.listFishs(fishIds).subscribe(
+    this.service.listFishs(fishIds, this.centimeterAvaliable).subscribe(
       {
         next: (fishs) => {
           this.fishs = fishs
@@ -69,27 +73,59 @@ export class AquariumComponent implements OnInit {
 
     this.loading = true
         
-    this.service.addFish(this.fish.id, this.fishCount,this.schools.map( school => school.fish.id) ).subscribe(
+    this.service.addFish(this.fish.id, this.fishCount, this.centimeterAvaliable, this.schools.map( school => school.fish.id) ).subscribe(
       {
         next: (response) => {
           let addedFish = new School(this.fishs.find(fish => fish.id == this.fish.id)!, this.fishCount)
           this.schools.push(addedFish!)
-          this.dhRange = response.dhRange
-          this.phRange = response.phRAnge
-          this.temperatureRange = response.temperatureRange
-          this.service.centimeterAvaliable = response.spaceAvaliableInCentimer
+          this.setParameters(response)
+          this.centimeterAvaliable = response.spaceAvaliableInCentimer
           this.fetchFishs()
           this.fishDialog.hide()
         },
         error: (e) => this.handle(e)
       }   
     )  
-
-
   }
 
-  getAvaliableSpace(){
-    return this.service.centimeterAvaliable
+  setParameters(response : ParametersResponse){
+    this.dhRange = response.dhRange
+    this.phRange = response.phRAnge
+    this.temperatureRange = response.temperatureRange
+  }
+  
+  removeFish(id : number){
+
+    let schoolToRemove = this.schools.filter(school => school.fish.id == id)[0]
+    let returningSpace = schoolToRemove.count * schoolToRemove.fish.size
+    this.schools = this.schools.filter(school => school.fish.id != id)
+
+    if(this.schools.length==0){
+      this.resetValues()
+      this.fetchFishs()
+    }else {
+      this.centimeterAvaliable+=returningSpace    
+      this.setPreviousParameters()
+    }  
+  }
+
+  setPreviousParameters(){
+    this.service.getFishsParameter(this.schools.map( school => school.fish.id) ).subscribe(
+      {
+        next: (response) => {
+          this.setParameters(response)
+          this.fetchFishs()
+        },
+        error: (e) => this.handle(e)
+      }   
+    )  
+  }
+
+  resetValues(){
+    this.dhRange = ''
+    this.phRange = ''
+    this.temperatureRange = ''
+    this.centimeterAvaliable = this.service.centimeterAvaliable
   }
 
   handle(ex : any) {

@@ -26,7 +26,7 @@
                         <li *ngIf="temperatureRange != ''" class="list-group-item"><b>Temperatura : </b>{{ temperatureRange }}</li>
                         <li *ngIf="phRange != ''" class="list-group-item"><b>PH : </b>{{ phRange }}</li>
                         <li *ngIf="dhRange != ''" class="list-group-item"><b>Dureza :</b> {{ dhRange }}</li>
-                        <li class="list-group-item"><b>Espaço disponivel : </b> {{ getAvaliableSpace()}} cm</li>
+                        <li class="list-group-item"><b>Espaço disponivel : </b> {{ centimeterAvaliable }} cm</li>
                     </ul>
                 </div>
             </div>
@@ -44,7 +44,10 @@
                       <tr *ngFor="let school of schools">
                         <td>{{ school.fish.name }}</td>
                         <td>{{ school.count }}</td>
-                        <td><mat-icon aria-hidden="false" >delete</mat-icon></td>
+                        <td>
+                          <button class="btn btn-lg shadow-none" (click)="removeFish(school.fish.id)">
+                            <mat-icon aria-hidden="false" >delete</mat-icon>
+                          </button>
                       </tr>
                     </tbody>
                   </table>

@@ -5,6 +5,7 @@ export class Fish{
                  public temperatureRange: string = '',
                  public phRange: string = '',
                  public dhRange: string = '',
+                 public size: number = 0,
                  public imageUrl: string = '') {}
 
                  
