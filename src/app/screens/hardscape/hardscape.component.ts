@@ -28,6 +28,7 @@ export class HardscapeComponent implements OnInit {
           if(lastQuestion!=null) {
             this.question = lastQuestion.hardScapeQuestion
             this.service.currentQuestion = this.question.id
+            this.answer = null
           }else
             this.openAquarion()  
         },

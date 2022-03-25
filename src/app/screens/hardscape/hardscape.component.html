@@ -12,30 +12,33 @@
   
             <div *ngIf="question.isYesOrNoQuestion">
                <mat-form-field appearance="legacy" >
-                    <mat-select [(ngModel)]="answer">
+                    <mat-select [(ngModel)]="answer" (selectionChange)="nextQuestion()">
                         <mat-option value="true">Sim</mat-option>
                         <mat-option value="false">Não</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
 
-            <div class="row align-items-center mt-4" *ngIf="!question.isYesOrNoQuestion">
+            <div class="input-group mt-4" *ngIf="!question.isYesOrNoQuestion">
                 <div class="col"></div>
-                <div class="col-sm-3">
-                    <input  type="number" [(ngModel)]="answer" class="form-control"
-                    maxlength="3"
-                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                <div class="col">
+                    <div class="input-group">
+                        <input  type="tel" [(ngModel)]="answer" class="form-control"
+                        maxlength="3"
+                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                        <button *ngIf="answer !=null" class="btn btn-primary btn-sm" type="button" (click)="nextQuestion()">
+                            Proximo
+                        </button>
+                    </div>
                 </div>
-                <div class="col"></div>
+                <div class="col"></div>               
               </div>
-
+       
             <div class="mt-5 mb-5">
                 <button class="btn btn-primary btn-lg" type="button" (click)="openDimentions()">
                     Voltar
                 </button>
-                <button class="btn btn-primary btn-lg ms-4" type="button" (click)="nextQuestion()">
-                    Proximo
-                </button>
+             
             </div>
         </div>
     </div>
