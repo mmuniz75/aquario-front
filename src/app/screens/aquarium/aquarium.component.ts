@@ -10,8 +10,11 @@ declare var window: any;
   templateUrl: './aquarium.component.html'
 })
 export class AquariumComponent implements OnInit {
-
+  
+  loading = false
+  message = ''
   fishDialog: any;
+  @ViewChildren('tagMessage') tagMessage:any;
   
 
   constructor(private router: Router,
@@ -33,6 +36,14 @@ export class AquariumComponent implements OnInit {
 
   getAvaliableSpace(){
     return this.service.centimeterAvaliable
+  }
+
+  handle(ex : any) {
+    this.loading = false;
+    console.log(ex)
+    let message = ex && ex.error && ex.error.message ? ex.error.message : "Erro interno";
+    this.message = message;
+    this.tagMessage.first.open();
   }
 
 }

@@ -13,7 +13,6 @@ export class HardscapeComponent implements OnInit {
   answer : any = null
   loading = false
   message = ''
-  isError = false
 
   @ViewChildren('tagMessage') tagMessage:any;
   
@@ -78,20 +77,7 @@ export class HardscapeComponent implements OnInit {
     this.loading = false;
     console.log(ex)
     let message = ex && ex.error && ex.error.message ? ex.error.message : "Erro interno";
-    this.showError(message);
-  }
-
-  showError(message : string) {
-    this.showDialog(message,true);
-  }
-
-  showMessage(message : string) {
-    this.showDialog(message,false);
-  }
-
-  showDialog(message : string, type: boolean) {
     this.message = message;
-    this.isError = type;
     this.tagMessage.first.open();
   }
 

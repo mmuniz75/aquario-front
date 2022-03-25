@@ -1,3 +1,6 @@
+<spinner *ngIf="loading"></spinner>
+<message [text]="message" #tagMessage></message>
+
 <div class="row justify-content-center">
     <div class="mt-4 col-lg-4" style="background-color:#ffffff">
 
@@ -91,7 +94,7 @@
                         <li class="list-group-item">
                           <div class="input-group">
                             <span ><b>Quantidade desejada : </b></span>
-                            <input type="number" class="ms-3 form-control me-5" maxlength="3" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                            <input type="tel" class="ms-3 form-control me-5" maxlength="3" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                             <button class="btn btn-primary" data-bs-dismiss="modal">Adicionar</button>
                           </div>
                         </li>
