@@ -16,6 +16,8 @@ import { InputNumberComponent } from './components/input-number/input-number.com
 import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './components/UI/spinner/spinner.component';
 import { MessageComponent } from './components/UI/message/message.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -38,6 +40,12 @@ import { MessageComponent } from './components/UI/message/message.component';
     MatSelectModule,
     MatIconModule,
     HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
