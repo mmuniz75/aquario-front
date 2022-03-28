@@ -20,25 +20,18 @@ import { Tank } from './model/tank.model';
 })
 export class FishService {
 
-  tank : Tank = new Tank(130,50,50);
-  currentQuestion : string | null = null
-  previousAnswers : Answer[] = []
-  centimeterAvaliable = 200
+  tank : Tank = new Tank();
+  centimeterAvaliable = 0
 
   constructor(private http: HttpClient) { }
 
-
-  getNextQuestion(answer : any) : Observable<HardscapeResponse[]>  {
-    if(this.currentQuestion!=null)
-      this.previousAnswers.push(new Answer(this.currentQuestion, answer))
-
-    var request = new HardScapeRequest(this.currentQuestion, answer, this.previousAnswers)  
-
+  getNextQuestion(answer : any,currentQuestion : string | null, previousAnswers : Answer[]) : Observable<HardscapeResponse[]>  {
+    var request = new HardScapeRequest(currentQuestion, answer, previousAnswers)  
     return this.http.post<HardscapeResponse[]>(`${environment.SERVER_URL}/hardscapeQuestion`,request)
   }
 
-  getAvaliableSpace() : Observable<AvaliableSpaceResponse> {
-    var request = new AvaliableSpaceRequest(this.tank, this.previousAnswers)
+  getAvaliableSpace(answers : Answer[]) : Observable<AvaliableSpaceResponse> {
+    var request = new AvaliableSpaceRequest(this.tank, answers)
     return this.http.post<AvaliableSpaceResponse>(`${environment.SERVER_URL}/avaliableSpace`,request)
   }
 
@@ -57,8 +50,4 @@ export class FishService {
     return this.http.post<ParametersResponse>(`${environment.SERVER_URL}/fish-parameter`,request)
   }
 
-  resetQuestions(){
-    this.previousAnswers = []
-    this.currentQuestion = null
-  }
 }  
