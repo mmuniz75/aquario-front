@@ -22,7 +22,8 @@ export class AquariumComponent implements OnInit {
   fishs : Fish[] = []
   fish : Fish = new Fish()
   fishCount = 0
-  
+  currentFishId = 0
+
   centimeterAvaliable = 0
   phRange = ''
   dhRange = ''
@@ -67,7 +68,14 @@ export class AquariumComponent implements OnInit {
     this.fishDialog.show();
   }
 
+  closeFishDialog(){
+    this.fish = new Fish()
+    this.currentFishId = 0
+    this.fishDialog.hide()
+  }
+
   addFish() {
+    this.fishCount = this.fish.minNumber
     if (this.fishCount < this.fish.minNumber)
       this.ShowError("Quantidade mínima para essa espécie no aquário é " + this.fish.minNumber)
 

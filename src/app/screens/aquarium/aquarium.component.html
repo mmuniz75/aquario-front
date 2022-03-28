@@ -15,7 +15,7 @@
             <div class="text-center" *ngIf="fishs.length > 0">
                   <mat-form-field appearance="legacy">
                   <mat-label><h5>Escolha um peixe</h5></mat-label>
-                    <mat-select  (selectionChange)="openFishDialog($event.value)" >
+                    <mat-select  (selectionChange)="openFishDialog($event.value)" [(ngModel)]="currentFishId">
                         <mat-option *ngFor="let fish of fishs" [value]="fish.id">{{fish.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -99,7 +99,7 @@
             </div>
         </div>
         <div class="modal-footer">
-               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+               <button type="button" class="btn btn-secondary" (click)="closeFishDialog()">Fechar</button>
         </div>
       </div>
     </div>
