@@ -75,8 +75,7 @@ export class AquariumComponent implements OnInit {
   }
 
   addFish() {
-    this.fishCount = this.fish.minNumber
-    if (this.fishCount < this.fish.minNumber)
+       if (this.fishCount < this.fish.minNumber)
       this.ShowError("Quantidade mínima para essa espécie no aquário é " + this.fish.minNumber)
 
     this.loading = true
@@ -89,6 +88,7 @@ export class AquariumComponent implements OnInit {
           this.setParameters(response)
           this.centimeterAvaliable = response.spaceAvaliableInCentimer
           this.fetchFishs()
+          this.fishCount = this.fish.minNumber
           this.fishDialog.hide()
         },
         error: (e) => this.handle(e)
