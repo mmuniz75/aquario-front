@@ -115,6 +115,8 @@ export class AquariumComponent implements OnInit {
       this.centimeterAvaliable+=returningSpace    
       this.setPreviousParameters()
     }  
+    
+    this.currentFishId = 0
   }
 
   setPreviousParameters(){
