@@ -6,6 +6,37 @@
         <p>Com esse sistema você conseguirá escolher os peixes apropriados para seu aquario.</p>
       </h5>
     </div>
+    <div class="row justify-content-center text-end">
+      <div class="mt-4 col-lg-4">
+        <nav class="btn-bar nav-light">
+              <a href="#" class="btn btn-glass btn-primary" (click)="openIOSDialog('Chrome')">
+                <mat-icon aria-hidden="false" >android</mat-icon> Android
+              </a>
+              <a href="#" class="btn btn-glass btn-primary ms-1" (click)="openIOSDialog('Safari')">
+                <mat-icon aria-hidden="false" >apple</mat-icon> IOS
+              </a>
+          </nav>
+      </div>
+    </div>
     <router-outlet></router-outlet>
   </div>
 </div>
+
+<div class="modal fade" id="iosInstalation" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content center">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Instrução de Instalação</h4>
+      </div>
+      <div class="modal-body text-center">
+        <div class="alert alert-success" role="alert">
+          <h5>No navegador {{navegador}} escolha no menu a opção "Adicionar à tela inicial".</h5>
+          <h5>O icone do app aparecerá no seu celular</h5>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>  
