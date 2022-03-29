@@ -6,25 +6,22 @@ declare var window: any;
   selector: 'message',
   templateUrl: './message.component.html'
 })
-export class MessageComponent implements OnInit {
+export class MessageComponent  {
 
   @Input() isError = false
   @Input() text = ''
   
   messageDialog: any
-    
-  ngOnInit(): void {
-    this.messageDialog = new window.bootstrap.Modal(
-      document.getElementById('messageDialog')
-    )
-  }
 
   getTitle() {
       return this.isError ? 'Aviso':'Confirmação'
   }
 
   open() {
-    this.messageDialog.show()
+    let dialog = new window.bootstrap.Modal(
+      document.getElementById('messageDialog')
+    )
+    dialog.show()
   }
 
 }
