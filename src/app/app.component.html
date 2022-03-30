@@ -8,7 +8,7 @@
     </div>
     <div class="row justify-content-center text-end">
       <div class="mt-4 col-lg-4">
-        <nav class="btn-bar nav-light">
+        <nav class="btn-bar nav-light" *ngIf="!isRunningFromMobileApp()">
               <button class="btn btn-glass btn-primary" (click)="openInstalationDialog('Chrome')">
                 <mat-icon aria-hidden="false" >android</mat-icon> Android
               </button>
