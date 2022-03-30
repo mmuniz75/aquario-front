@@ -12,10 +12,10 @@ export class AppComponent {
   navegador = 'Chrome';
 
 
-  openIOSDialog(navegador : string){
+  openInstalationDialog(navegador : string){
     this.navegador = navegador
     let dialog = new window.bootstrap.Modal(
-      document.getElementById('iosInstalation')
+      document.getElementById('instalationDialog')
     );
     dialog.show()  
 
