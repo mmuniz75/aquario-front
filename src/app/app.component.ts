@@ -10,13 +10,21 @@ declare var navigator: any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+
+  ANDROID = 'Chrome'
+  IOS = 'Safari'
+
   title = 'aquario';
-  navegador = 'Chrome';
+  navegador = '';
 
   constructor(private service : FishService){}
 
   ngOnInit(): void {
        this.service.startServer().subscribe()
+  }
+
+  getMenuOptionName(){
+    return this.navegador == this.ANDROID ? "Adicionar à tela inicial" : "Tela de Início"
   }
 
   openInstalationDialog(navegador : string){
