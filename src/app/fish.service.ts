@@ -50,4 +50,8 @@ export class FishService {
     return this.http.post<ParametersResponse>(`${environment.SERVER_URL}/fish-parameter`,request)
   }
 
+  startServer() {
+     return this.http.get(`${environment.SERVER_URL}/start`)
+  }
+
 }  
