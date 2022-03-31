@@ -75,8 +75,10 @@ export class AquariumComponent implements OnInit {
   }
 
   addFish() {
-       if (this.fishCount < this.fish.minNumber)
-      this.ShowError("Quantidade mínima para essa espécie no aquário é " + this.fish.minNumber)
+      if (this.fishCount < this.fish.minNumber) {
+          this.ShowError("Quantidade mínima para essa espécie no aquário é " + this.fish.minNumber)
+          return
+      }    
 
     this.loading = true
         
@@ -91,7 +93,11 @@ export class AquariumComponent implements OnInit {
           this.fishCount = this.fish.minNumber
           this.fishDialog.hide()
         },
-        error: (e) => this.handle(e)
+        error: (e) => {
+          console.log(e)
+          let error = {'error' : {'message' : 'Não é possivel adicionar esses peixes pois o aquario não suporta essa quantidade'}}
+          this.handle(error)
+        }  
       }   
     )  
   }
