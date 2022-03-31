@@ -14,16 +14,39 @@ import { HardScapeQuestion } from './model/hardscape-question.model';
 import { HardScapeRequest } from './model/hardscape-request.model';
 import { HardscapeResponse } from './model/hardscape-response.model';
 import { Tank } from './model/tank.model';
+import { TANK, SPACE_AVALIABLE} from './consts'
 
 @Injectable({
   providedIn: 'root'
 })
 export class FishService {
 
-  tank : Tank = new Tank();
-  centimeterAvaliable = 0
+  private _tank : Tank = new Tank();
+  set tank(tank : Tank){
+    this._tank = tank
+    localStorage.setItem(TANK, JSON.stringify(tank)); 
+  }
+  get tank() : Tank{
+    return this._tank
+  }
 
-  constructor(private http: HttpClient) { }
+  private _centimeterAvaliable = 0
+  get centimeterAvaliable() : number{
+     return this._centimeterAvaliable 
+  }
+
+  set centimeterAvaliable(space : number){
+    this._centimeterAvaliable = space
+    localStorage.setItem(SPACE_AVALIABLE, space.toString()); 
+  }
+  
+  constructor(private http: HttpClient) { 
+    let space = localStorage.getItem(SPACE_AVALIABLE)
+    let tank = localStorage.getItem(TANK)
+    this._tank = tank!=null?JSON.parse(tank):new Tank()
+
+    this._centimeterAvaliable = space==null?0:+space!!
+  }
 
   getNextQuestion(answer : any,currentQuestion : string | null, previousAnswers : Answer[]) : Observable<HardscapeResponse[]>  {
     var request = new HardScapeRequest(currentQuestion, answer, previousAnswers)  
@@ -31,12 +54,12 @@ export class FishService {
   }
 
   getAvaliableSpace(answers : Answer[]) : Observable<AvaliableSpaceResponse> {
-    var request = new AvaliableSpaceRequest(this.tank, answers)
+    var request = new AvaliableSpaceRequest(this._tank, answers)
     return this.http.post<AvaliableSpaceResponse>(`${environment.SERVER_URL}/avaliableSpace`,request)
   }
 
   listFishs(currentFishs : number[], centimeterAvaliable : number) : Observable<Fish[]> {
-    var request = new FishRequest(this.tank.width, this.tank.length, centimeterAvaliable, currentFishs)
+    var request = new FishRequest(this._tank.width, this._tank.length, centimeterAvaliable, currentFishs)
     return this.http.post<Fish[]>(`${environment.SERVER_URL}/fish`,request)
   }
 

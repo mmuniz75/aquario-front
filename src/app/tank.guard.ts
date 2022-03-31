@@ -1,31 +1,25 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { FishService } from './fish.service';
+import { TANK } from './consts';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ConfigSetGuard implements CanActivate {
-
-  constructor(private service : FishService,
-              private router : Router ){}
+export class TankGuard implements CanActivate {
+  constructor(private router : Router ){}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    if (!environment.production) return true;
+    let tank = localStorage.getItem(TANK)
 
-    if(this.service.tank.width!=0)
+    if(tank != null)
       return true;
     else {
       this.router.navigate(['dimentions']);
       return false;
     }
-      
-    
   }
-  
-}
+}  
