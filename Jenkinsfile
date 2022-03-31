@@ -30,7 +30,7 @@ pipeline {
       }
       stage('Sync with AWS') {
          steps {
-            sh "aws s3 sync dist s3://peixes.top/ --delete"
+            sh "aws s3 sync dist/aquario s3://peixes.top/ --delete"
          }
       }
    }
