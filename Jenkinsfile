@@ -14,7 +14,7 @@ pipeline {
                   branch: "${branch}")
          }
       }
-      /*
+      
       stage('Install Modules') {
          steps {
             //env.NODEJS_HOME = "${tool 'nodejs'}"
@@ -22,7 +22,7 @@ pipeline {
             sh 'npm install'
          }
       }
-      */
+      
       stage('Compile Typescript') {
          steps {
             sh 'ng build --prod --build-optimizer'
