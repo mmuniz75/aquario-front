@@ -20,8 +20,8 @@ import { Tank } from './model/tank.model';
 })
 export class FishService {
 
-  tank : Tank = new Tank(120,60,40);
-  centimeterAvaliable = 250
+  tank : Tank = new Tank();
+  centimeterAvaliable = 0
 
   constructor(private http: HttpClient) { }
 
