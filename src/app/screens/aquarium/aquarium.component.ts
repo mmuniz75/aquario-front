@@ -58,10 +58,9 @@ export class AquariumComponent implements OnInit {
 
   }
 
-  openHardscape() {
-    this.router.navigate(['/hardscape']);
+  openDimentions() {
+    this.router.navigate(['/dimentions']);
   }
-
   openFishDialog(id : string){
     this.fish = this.fishs.find(fish => fish.id == +id)!
     this.fishCount = this.fish.minNumber
