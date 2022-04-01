@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   }
 
   getMenuOptionName(){
-    return this.navegador == this.ANDROID ? "Adicionar à tela inicial" : "Tela de Início"
+    return this.navegador == this.ANDROID ? "Instalar aplicativo" : "Tela de Início"
   }
 
   openInstalationDialog(navegador : string){
