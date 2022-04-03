@@ -8,11 +8,11 @@
     </div>
     <div class="row justify-content-center text-end">
       <div class="mt-4 col-lg-4">
-        <nav class="btn-bar nav-light" *ngIf="!isRunningFromMobileApp()">
-              <button class="btn btn-glass btn-primary" (click)="openInstalationDialog('Chrome')">
+        <nav class="btn-bar nav-light" >
+              <button *ngIf="!isRunningFromMobileApp()" class="btn btn-glass btn-primary" (click)="openInstalationDialog('Chrome')">
                 <mat-icon aria-hidden="false" >android</mat-icon> Android
               </button>
-              <button class="btn btn-glass btn-primary ms-1" (click)="openInstalationDialog('Safari')">
+              <button *ngIf="!isRunningFromMobileApp()" class="btn btn-glass btn-primary ms-1" (click)="openInstalationDialog('Safari')">
                 <mat-icon aria-hidden="false" >apple</mat-icon> IOS
               </button>
               <a href="https://www.youtube.com/watch?v=tuYMvnwo3KE" target="_blank"  class="btn btn-glass btn-primary ms-1" >
