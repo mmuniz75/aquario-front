@@ -1,6 +1,7 @@
 import { Component, OnInit,ViewChildren, ElementRef, QueryList } from '@angular/core';
 import { ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
+import { FISHS } from 'src/app/consts';
 import { FishService } from 'src/app/fish.service';
 import { Fish } from 'src/app/model/fish.model';
 import { ParametersResponse } from 'src/app/model/parameters-response.model.';
@@ -40,15 +41,25 @@ export class AquariumComponent implements OnInit {
       document.getElementById('fishDialog')
     );
     this.centimeterAvaliable = this.service.centimeterAvaliable
-    this.fetchFishs();
+
+    let cash = localStorage.getItem(FISHS)
+
+    if(cash!=null) {
+      this.fishs = JSON.parse(cash)
+      this.loading = false
+    } else  
+     this.fetchFishs(true);
     
   }
 
-  fetchFishs(){
+  fetchFishs(cached : boolean = false){
     let fishIds = this.schools.map(school => school.fish.id)
     this.service.listFishs(fishIds, this.centimeterAvaliable).subscribe(
       {
         next: (fishs) => {
+          if(cached)
+            localStorage.setItem(FISHS, JSON.stringify(fishs));
+
           this.fishs = fishs
           this.loading = false
         },
@@ -59,6 +70,7 @@ export class AquariumComponent implements OnInit {
   }
 
   openDimentions() {
+    localStorage.removeItem(FISHS); 
     this.router.navigate(['/dimentions']);
   }
   openFishDialog(id : string){
